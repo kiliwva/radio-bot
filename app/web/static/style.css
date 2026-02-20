@@ -1,0 +1,8 @@
+:root { color-scheme: dark; }
+body { font-family: Inter, Arial, sans-serif; background: #121826; color: #e7ecff; margin: 0; }
+.container { max-width: 980px; margin: 0 auto; padding: 24px; }
+.card { background: #1b2335; border: 1px solid #2d3957; border-radius: 16px; padding: 16px; margin: 12px 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 12px; }
+.btn { background: linear-gradient(90deg,#3b82f6,#8b5cf6); border: 0; color: white; padding: 8px 14px; border-radius: 10px; cursor: pointer; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0; }
+.badge { background: #273657; padding: 6px 10px; border-radius: 999px; margin-right: 8px; }

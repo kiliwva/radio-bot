@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Калькулятор прибыли</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div class="container">
+  <h1>Калькулятор прибыли Stars</h1>
+  <form method="get" action="/profit" class="card">
+    <label>Выручка: <input type="number" name="revenue" value="{{ revenue }}" step="0.01"></label>
+    <label>Комиссия %: <input type="number" name="commission" value="{{ commission }}" step="0.01"></label>
+    <label>Себестоимость: <input type="number" name="cost" value="{{ cost }}" step="0.01"></label>
+    <button class="btn" type="submit">Рассчитать</button>
+  </form>
+  <p class="card">Итоговая прибыль: <strong>{{ profit }}</strong></p>
+</div>
+</body>
+</html>

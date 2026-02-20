@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WebApp магазин</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div class="container">
+  <h1>Магазин в Telegram WebApp</h1>
+  <div class="grid">
+    {% for product in products %}
+      <div class="card">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.description }}</p>
+        <p><strong>{{ product.price_rub }} ₽</strong></p>
+        <button class="btn">Купить</button>
+      </div>
+    {% endfor %}
+  </div>
+
+  <section class="card">
+    <h2>Доступные платежки</h2>
+    {% for provider in providers %}
+      <span class="badge">{{ provider.title }}: {{ 'ON' if provider.enabled else 'OFF' }}</span>
+    {% endfor %}
+  </section>
+
+  <section class="card">
+    <h2>Рейтинг по Stars</h2>
+    {% for row in leaders %}
+      <p>{{ row.tg_id }} — {{ row.total_amount }} ₽ / {{ row.transactions }}</p>
+    {% endfor %}
+  </section>
+</div>
+</body>
+</html>
