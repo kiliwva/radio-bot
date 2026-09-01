@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Админ-панель магазина</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div class="container">
+  <h1>Административная панель</h1>
+
+  <section class="card">
+    <h2>Платежные системы</h2>
+    {% for provider in providers %}
+    <form method="post" action="/providers/{{ provider.code }}/toggle" class="row">
+      <span>{{ provider.title }}</span>
+      <button class="btn" type="submit">{{ 'Выключить' if provider.enabled else 'Включить' }}</button>
+    </form>
+    {% endfor %}
+  </section>
+
+  <section class="card">
+    <h2>Пользователи</h2>
+    {% for user in users %}
+    <form method="post" action="/users/{{ user.id }}/toggle" class="row">
+      <span>ID: {{ user.tg_id }} | Stars: {{ user.stars_balance }} | {{ 'Заблокирован' if user.is_blocked else 'Активен' }}</span>
+      <button class="btn" type="submit">Переключить блокировку</button>
+    </form>
+    {% endfor %}
+  </section>
+
+  <section class="card">
+    <h2>Заказы</h2>
+    {% for order in orders %}
+    <form method="post" action="/orders/{{ order.id }}/status" class="row">
+      <span>#{{ order.id }} | {{ order.product_slug }} | {{ order.amount_rub }} ₽ | {{ order.provider }} | {{ order.status.value }}</span>
+      <select name="status">
+        <option value="pending">pending</option>
+        <option value="paid">paid</option>
+        <option value="cancelled">cancelled</option>
+      </select>
+      <button class="btn" type="submit">Сохранить</button>
+    </form>
+    {% endfor %}
+  </section>
+
+  <section class="card">
+    <h2>Тикеты</h2>
+    {% for ticket in tickets %}
+      <p><strong>#{{ ticket.id }} | {{ ticket.subject }}</strong><br/>{{ ticket.message }}</p>
+    {% endfor %}
+  </section>
+
+  <section class="card">
+    <h2>Топ пользователей по Stars</h2>
+    {% for row in leaders %}
+      <p>{{ row.tg_id }} — {{ row.total_amount }} ₽ ({{ row.transactions }} транзакций)</p>
+    {% endfor %}
+  </section>
+</div>
+</body>
+</html>
